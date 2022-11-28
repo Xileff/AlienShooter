@@ -15,6 +15,7 @@ public class MyWorld extends World
      */
     
     public int score = 0;
+    public static Counter counterScore;
     
     public MyWorld()
     {    
@@ -24,14 +25,15 @@ public class MyWorld extends World
     }
     
     private void prepare() {
+        counterScore = new Counter("Score : ");
+        addObject(counterScore, 50, 20);
+        
         Rocket rocket = new Rocket();
         addObject(rocket, getWidth()/2, getHeight() * 4 / 5);
         
         for (int i = 0; i < 5; i++) {
             Alien alien = new Alien();
-            addObject(alien, Greenfoot.getRandomNumber(getWidth() / 2), getHeight() / 3);
+            addObject(alien, Greenfoot.getRandomNumber(getWidth() / 2), 0);
         }
     }
-    
-    
 }

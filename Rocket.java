@@ -20,6 +20,7 @@ public class Rocket extends Movable
         // Add your action code here.
         keyboardMovement();
         shoot();
+        dieIfHitAlien();
     }
     
     public void keyboardMovement () {
@@ -40,13 +41,29 @@ public class Rocket extends Movable
         }
     }
     
-    public void shoot () {
+    public void shoot() {
         bulletTimer++;
         if (bulletTimer == 62) {
             Bullet bullet = new Bullet();
             getWorld().addObject(bullet, getX(), getY());
             
+            Greenfoot.playSound("sounds/ammo.wav");
+            
             bulletTimer = 0;
+        }
+    }
+    
+    public void dieIfHitAlien() {
+        if (isTouching(Alien.class)) {
+            getWorld().addObject(new GameOver(), getWorld().getWidth()/2, getWorld().getHeight()/2);
+            
+            Explosion expl = new Explosion();
+            getWorld().addObject(expl, getX(), getY());
+            Greenfoot.playSound("sounds/blast.wav");
+            
+            getWorld().removeObject(this);
+            Greenfoot.stop();
+            return;
         }
     }
 }

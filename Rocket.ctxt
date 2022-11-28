@@ -7,4 +7,6 @@ comment2.params=
 comment2.target=void\ keyboardMovement()
 comment3.params=
 comment3.target=void\ shoot()
-numComments=4
+comment4.params=
+comment4.target=void\ dieIfHitAlien()
+numComments=5

@@ -10,5 +10,5 @@ comment3.target=void\ tektok()
 comment4.params=
 comment4.target=void\ returnToTop()
 comment5.params=
-comment5.target=void\ die()
+comment5.target=void\ dieIfHitByBullet()
 numComments=6

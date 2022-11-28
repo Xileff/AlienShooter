@@ -23,7 +23,7 @@ public class Alien extends Movable
         if (isAbnormal) tektok();
         moveVertical(Math.abs(speed));
         returnToTop();
-        die();
+        dieIfHitByBullet();
     }
     
     public Alien() {
@@ -52,10 +52,17 @@ public class Alien extends Movable
         }
     }
     
-    public void die(){
+    public void dieIfHitByBullet(){
         if (isTouching(Bullet.class)) {
+            Bullet bullet = getIntersectingObjects(Bullet.class).get(0);
+            getWorld().removeObject(bullet);
+            
             Explosion expl = new Explosion();
             getWorld().addObject(expl, getX(), getY());
+            Greenfoot.playSound("sounds/blast.wav");
+            
+            MyWorld.counterScore.add(10);
+            getWorld().addObject(new Alien(), Greenfoot.getRandomNumber(getWorld().getWidth() / 2), 0);
             
             disappear();
             return;
